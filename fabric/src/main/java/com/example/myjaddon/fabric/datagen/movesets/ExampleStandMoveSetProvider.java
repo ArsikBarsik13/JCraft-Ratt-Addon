@@ -4,7 +4,7 @@ import com.example.myjaddon.common.register.StandTypeRegistry;
 import com.example.myjaddon.common.stand.ExampleStandEntity;
 import net.arna.jcraft.api.attack.MoveMap;
 import net.arna.jcraft.api.attack.MoveSet;
-import net.arna.jcraft.fabric.api.JCraftMoveSetProvider;
+import net.arna.jcraft.api.datagen.JCraftMoveSetProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 
 import java.util.function.Consumer;

@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public final class ExampleAddon {
     public static final String MOD_ID = "myjaddon";
+    public static final String BASE_CONTROLLER = "base_controller";
 
     public static void init() {
         EntityTypeRegistry.REGISTRY.register();

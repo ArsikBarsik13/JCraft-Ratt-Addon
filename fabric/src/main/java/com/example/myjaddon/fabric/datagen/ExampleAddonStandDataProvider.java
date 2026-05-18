@@ -2,8 +2,8 @@ package com.example.myjaddon.fabric.datagen;
 
 import com.example.myjaddon.common.register.StandTypeRegistry;
 import com.example.myjaddon.common.stand.ExampleStandEntity;
+import net.arna.jcraft.api.datagen.JCraftStandDataProvider;
 import net.arna.jcraft.api.stand.StandData;
-import net.arna.jcraft.fabric.api.JCraftStandDataProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.resources.ResourceLocation;
 

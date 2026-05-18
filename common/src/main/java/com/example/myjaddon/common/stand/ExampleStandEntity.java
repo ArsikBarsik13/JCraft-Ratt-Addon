@@ -1,8 +1,9 @@
 package com.example.myjaddon.common.stand;
 
+import com.example.myjaddon.ExampleAddon;
 import com.example.myjaddon.common.register.StandTypeRegistry;
-import mod.azure.azurelib.core.animation.AnimationState;
-import mod.azure.azurelib.core.animation.RawAnimation;
+import mod.azure.azurelib.animation.dispatch.command.AzCommand;
+import mod.azure.azurelib.animation.play_behavior.AzPlayBehaviors;
 import net.arna.jcraft.JCraft;
 import net.arna.jcraft.api.attack.MoveMap;
 import net.arna.jcraft.api.attack.MoveSet;
@@ -19,9 +20,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Consumer;
 
 public class ExampleStandEntity extends StandEntity<ExampleStandEntity, ExampleStandEntity.State> {
     public static final MoveSet<ExampleStandEntity, State> MOVE_SET = MoveSetManager.create(StandTypeRegistry.EXAMPLE_STAND,
@@ -69,26 +67,21 @@ public class ExampleStandEntity extends StandEntity<ExampleStandEntity, ExampleS
         return State.BLOCK;
     }
 
-    @Override
-    protected @Nullable String getSummonAnimation() {
-        return "summon";
-    }
-
     public enum State implements StandAnimationState<ExampleStandEntity> {
-        IDLE(builder -> builder.setAnimation(RawAnimation.begin().thenLoop("idle"))),
-        LIGHT(builder -> builder.setAnimation(RawAnimation.begin().thenPlayAndHold("light"))),
-        BLOCK(builder -> builder.setAnimation(RawAnimation.begin().thenLoop("block"))),
-        BARRAGE(builder -> builder.setAnimation(RawAnimation.begin().thenLoop("barrage")));
+        IDLE(AzCommand.create(ExampleAddon.BASE_CONTROLLER, "idle", AzPlayBehaviors.LOOP)),
+        LIGHT(AzCommand.create(ExampleAddon.BASE_CONTROLLER, "light", AzPlayBehaviors.HOLD_ON_LAST_FRAME)),
+        BLOCK(AzCommand.create(ExampleAddon.BASE_CONTROLLER, "block", AzPlayBehaviors.LOOP)),
+        BARRAGE(AzCommand.create(ExampleAddon.BASE_CONTROLLER, "barrage", AzPlayBehaviors.LOOP));
 
-        private final Consumer<AnimationState<ExampleStandEntity>> animator;
+        private final AzCommand animator;
 
-        State(Consumer<AnimationState<ExampleStandEntity>> animator) {
+        State(AzCommand animator) {
             this.animator = animator;
         }
 
         @Override
-        public void playAnimation(ExampleStandEntity attacker, AnimationState<ExampleStandEntity> builder) {
-            animator.accept(builder);
+        public void playAnimation(ExampleStandEntity attacker) {
+            animator.sendForEntity(attacker);
         }
     }
 }
