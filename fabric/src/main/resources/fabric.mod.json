@@ -1,32 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "myjaddon",
+  "id": "ratt",
   "version": "${version}",
-  "name": "JCraft Example Addon",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "JCraft Ratt Addon",
+  "description": "This addon adds the Ratt stand from JoJo's Bizzare Adventure Part 4 Diamond Is Unbreakable to JCraft: Eyes Of Ender!",
   "authors": [
-    "Me!"
+    "Arsik"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-  "license": "CC0-1.0",
-  "icon": "assets/myjaddon/icon.png",
+  "license": "MIT",
+  "icon": "assets/ratt/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.example.myjaddon.fabric.ExampleModFabric"
+      "net.arsik.ratt.fabric.RattFabric"
     ],
     "client": [
-      "com.example.myjaddon.fabric.client.ExampleModFabricClient"
+      "net.arsik.ratt.fabric.client.RattFabricClient"
     ],
     "fabric-datagen": [
-      "com.example.myjaddon.fabric.datagen.ExampleAddonDataGen"
+      "net.arsik.ratt.fabric.datagen.RattDataGen"
     ]
   },
   "mixins": [
-    "myjaddon.mixins.json"
+    "ratt.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.14",
